@@ -1,0 +1,12 @@
+{
+  "name": "Asset Preview",
+  "authors": [
+    "Bob Olde Hampsink <b.oldehampsink@itmundi.nl>"
+  ],
+  "description": "Asset Preview Plugin for Craft CMS Control Panel",
+  "license": "MIT",
+  "homepage": "http://github.com/boboldehampsink/assetpreview",
+  "dependencies": {
+    "fancybox": "~2.1.5"
+  }
+}
