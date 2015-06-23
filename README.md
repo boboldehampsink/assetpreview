@@ -16,5 +16,8 @@ The plugin's folder should be named "assetpreview"
 
 Changelog
 =================
+###0.1.1###
+ - Only appear for logged in users in the CP
+
 ###0.1.0###
  - Initial release
