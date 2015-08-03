@@ -16,6 +16,9 @@ The plugin's folder should be named "assetpreview"
 
 Changelog
 =================
+###0.2.0###
+ - Added gallery browsing, closing issue #1 (thanks to steverowling)
+
 ###0.1.1###
  - Only appear for logged in users in the CP
 
