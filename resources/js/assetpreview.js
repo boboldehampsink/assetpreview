@@ -17,6 +17,16 @@
         // Keep state
         var state = 0;
 
+        // Build array of asset fields
+        var assetFields = [];
+
+        $('.element.hasthumb').each(function(index) {
+            assetFields.push({
+                href: $(this).data('url'),
+                title: $(this).data('label')
+            });
+        });
+
         // Scan for asset fields
         $('.element.hasthumb').on('keydown', function(e) {
 
@@ -30,11 +40,25 @@
                     $.fancybox.close();
                 } else {
 
+                    // Create object for this asset
+                    var thisAssetFieldUrl = $(this).data('url');
+
+                    // Find the index of this asset in assetFields array
+                    var thisAssetIndex = 0;
+
+                    var i, s, len = assetFields.length;
+                    for (i=0; i<len; ++i) {
+                        if (i in assetFields) {
+                            s = assetFields[i];
+                            if (s.href == thisAssetFieldUrl) {
+                                thisAssetIndex = i;
+                            }
+                        }
+                    }
+
                     // Open fancybox
-                    $.fancybox($(this), {
-                        href: $(this).data('url'),
-                        title: $(this).data('label')
-                    });
+                    $.fancybox.open(assetFields, {index: thisAssetIndex,
+                                                  keys: {close: [32]}});
                 }
 
                 // Change state
