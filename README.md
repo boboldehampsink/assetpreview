@@ -13,7 +13,7 @@ The plugin's folder should be named "assetpreview"
 Changelog
 =================
 ###0.3.0###
- - Added asset element index browsing
+ - Added asset element index browsing, closing issue #3 (thanks to tombauer)
 
 ###0.2.0###
  - Added gallery browsing, closing issue #1 (thanks to steverowling)
