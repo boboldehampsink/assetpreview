@@ -17,19 +17,21 @@
         // Keep state
         var state = 0;
     
-        $(".elements").on("keydown","*", function(e) {
+        $('.elements').on('keydown', '*', function(e) {
+
             // Listen for space 
             if(e.which == 32) {
                 e.stopPropagation();
-                var myThis;
                 var assetFields = [];
                 
-                // select the element and check if it's a asset field element
-                myThis = $(this).find(".element.hasthumb");
-                // if it's not a asset field element, it's a element in assets element index
-                if (!myThis.hasClass("hasthumb")){
-                    //select the element in asset element index
-                    myThis = $(this).closest(".element.hasthumb");
+                // Select the element and check if it's a asset field element
+                var thisAsset = $(this).find('.element.hasthumb');
+
+                // If it's not a asset field element, it's a element in assets element index
+                if (!thisAsset.hasClass('hasthumb')) {
+
+                    // Select the element in asset element index
+                    thisAsset = $(this).closest('.element.hasthumb');
                 } 
                 
                 // Toggle
@@ -49,7 +51,7 @@
                     });
                     
                      // Create object for this asset
-                    var thisAssetFieldUrl = myThis.data('url');
+                    var thisAssetFieldUrl = thisAsset.data('url');
 
                     // Find the index of this asset in assetFields array
                     var thisAssetIndex = 0;
@@ -68,7 +70,7 @@
                         index: thisAssetIndex,
                         keys: {close: [32]},
                         afterShow:  function(){
-                            $(".fancybox-close").click(function(){
+                            $('.fancybox-close').one('click', function(){
                                 state = 0;
                             });
                         }
