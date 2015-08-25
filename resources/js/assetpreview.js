@@ -16,31 +16,40 @@
 
         // Keep state
         var state = 0;
-
-        // Build array of asset fields
-        var assetFields = [];
-        $('.element.hasthumb').each(function(index) {
-            assetFields.push({
-                href: $(this).data('url'),
-                title: $(this).data('label')
-            });
-        });
-
-        // Scan for asset fields
-        $('.element.hasthumb').on('keydown', function(e) {
-
-            // Listen for space bar
+    
+        $(".elements").on("keydown","*", function(e) {
+            // Listen for space 
             if(e.which == 32) {
-
+                e.stopPropagation();
+                var myThis;
+                var assetFields = [];
+                
+                // select the element and check if it's a asset field element
+                myThis = $(this).find(".element.hasthumb");
+                // if it's not a asset field element, it's a element in assets element index
+                if (!myThis.hasClass("hasthumb")){
+                    //select the element in asset element index
+                    myThis = $(this).closest(".element.hasthumb");
+                } 
+                
                 // Toggle
                 if(state) {
-
                     // Close all boxes
                     $.fancybox.close();
-                } else {
-
-                    // Create object for this asset
-                    var thisAssetFieldUrl = $(this).data('url');
+                    state = 0;
+                }else {
+                    
+                    // Build array of asset fields
+                    assetFields = [];
+                    $(this).parent().find('.element.hasthumb').each(function(index) {
+                        assetFields.push({
+                            href: $(this).data('url'),
+                            title: $(this).data('label')
+                        });
+                    });
+                    
+                     // Create object for this asset
+                    var thisAssetFieldUrl = myThis.data('url');
 
                     // Find the index of this asset in assetFields array
                     var thisAssetIndex = 0;
@@ -53,16 +62,20 @@
                             }
                         }
                     }
-
+    
                     // Open fancybox
                     $.fancybox.open(assetFields, {
                         index: thisAssetIndex,
-                        keys: {close: [32]}
+                        keys: {close: [32]},
+                        afterShow:  function(){
+                            $(".fancybox-close").click(function(){
+                                state = 0;
+                            });
+                        }
                     });
+        
+                    state = 1;
                 }
-
-                // Change state
-                state = !state;
             }
         });
     });
