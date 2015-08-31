@@ -12,6 +12,9 @@ The plugin's folder should be named "assetpreview"
 
 Changelog
 =================
+###0.3.1###
+ - Don't interfere with console commands
+
 ###0.3.0###
  - Added asset element index browsing, closing issue #3 (thanks to tombauer)
 
