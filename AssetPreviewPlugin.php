@@ -61,7 +61,7 @@ class AssetPreviewPlugin extends BasePlugin
     public function init()
     {
         // Only appear for logged in users in the CP
-        if (craft()->userSession->isLoggedIn() && craft()->request->isCpRequest()) {
+        if (!craft()->isConsole() && craft()->userSession->isLoggedIn() && craft()->request->isCpRequest()) {
 
             // Include fancybox library files
             craft()->templates->includeCssResource('assetpreview/lib/fancybox/source/jquery.fancybox.css');
