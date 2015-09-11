@@ -63,6 +63,9 @@ class AssetPreviewPlugin extends BasePlugin
         // Only appear for logged in users in the CP
         if (!craft()->isConsole() && craft()->userSession->isLoggedIn() && craft()->request->isCpRequest()) {
 
+            // Inject translatable string
+            craft()->templates->includeTranslations('Select and press space to preview');
+
             // Include fancybox library files
             craft()->templates->includeCssResource('assetpreview/lib/fancybox/source/jquery.fancybox.css');
             craft()->templates->includeJsResource('assetpreview/lib/fancybox/source/jquery.fancybox.pack.js');

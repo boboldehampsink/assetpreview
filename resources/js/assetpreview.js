@@ -16,14 +16,15 @@
 
         // Keep state
         var state = 0;
-    
+
+        // Trigger on keydown
         $('.elements').on('keydown', '*', function(e) {
 
-            // Listen for space 
+            // Listen for space
             if(e.which == 32) {
                 e.stopPropagation();
                 var assetFields = [];
-                
+
                 // Select the element and check if it's a asset field element
                 var thisAsset = $(this).find('.element.hasthumb');
 
@@ -32,15 +33,15 @@
 
                     // Select the element in asset element index
                     thisAsset = $(this).closest('.element.hasthumb');
-                } 
-                
+                }
+
                 // Toggle
                 if(state) {
                     // Close all boxes
                     $.fancybox.close();
                     state = 0;
                 }else {
-                    
+
                     // Build array of asset fields
                     assetFields = [];
                     $(this).parent().find('.element.hasthumb').each(function(index) {
@@ -49,7 +50,7 @@
                             title: $(this).data('label')
                         });
                     });
-                    
+
                      // Create object for this asset
                     var thisAssetFieldUrl = thisAsset.data('url');
 
@@ -64,7 +65,7 @@
                             }
                         }
                     }
-    
+
                     // Open fancybox
                     $.fancybox.open(assetFields, {
                         index: thisAssetIndex,
@@ -75,10 +76,14 @@
                             });
                         }
                     });
-        
+
                     state = 1;
                 }
             }
+        }).on('mouseover', function() {
+
+            // Add explaining hover text
+            $('.element.hasthumb').attr('title', Craft.t('Select and press space to preview'));
         });
     });
 })(jQuery);
